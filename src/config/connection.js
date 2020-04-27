@@ -11,7 +11,4 @@ module.exports = {
 		timestamps: true,
 		underscored: true,
 	},
-	dialectOptions: {
-		ssl: process.env.DB_SSL,
-	},
 };
