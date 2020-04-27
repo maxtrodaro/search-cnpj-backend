@@ -1,14 +1,17 @@
 require("../bootstrap");
 
 module.exports = {
-	dialect: process.env.DB_DIALECT,
+	dialect: process.env.DB_DIALECT || "postgres",
 	host: process.env.DB_HOST,
 	username: process.env.DB_USER,
 	password: process.env.DB_PASS,
 	database: process.env.DB_DATABASE,
+	logging: false,
 	define: {
 		timestamps: true,
 		underscored: true,
 	},
-	ssl: true,
+	dialectOptions: {
+		ssl: process.env.DB_SSL,
+	},
 };
