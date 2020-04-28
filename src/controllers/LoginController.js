@@ -19,7 +19,7 @@ module.exports = {
 			where: { username: request.body.username },
 		});
 
-		if (profile.length < 1) {
+		if (!profile) {
 			return response.status(400).json({ error: "User not found" });
 		}
 
