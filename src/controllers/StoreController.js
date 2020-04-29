@@ -42,14 +42,9 @@ module.exports = {
 			return response.status(400).json({ error: "Loja já existente" });
 		}
 
-		const { name, cnpj, cod_emp, serv_ip } = await Store.create(request.body);
+		await Store.create(request.body);
 
-		return response.status(200).json({
-			name,
-			cnpj,
-			cod_emp,
-			serv_ip,
-		});
+		return response.status(200).json("Loja cadastrada!");
 	},
 
 	async deleteStore(request, response) {

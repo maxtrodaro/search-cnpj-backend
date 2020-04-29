@@ -34,16 +34,12 @@ module.exports = {
 			return response.status(400).json({ error: "Este usuário já existe" });
 		}
 
-		const { id, name, username } = await Profile.create(request.body);
+		await Profile.create(request.body);
 
 		const token = generateToken({ id: id });
 
 		return response.status(200).json({
-			user: {
-				id,
-				name,
-				username,
-			},
+			user: "Usuário cadastrado com sucesso",
 			token,
 		});
 	},
