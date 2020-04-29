@@ -8,7 +8,7 @@ module.exports = {
 		const profile = await Profile.findAll();
 
 		if (profile.length < 1) {
-			return response.json({ error: `Don't have users yet.` });
+			return response.json({ error: `Não existem usuários ainda` });
 		}
 		return response.json(profile);
 	},
@@ -21,7 +21,9 @@ module.exports = {
 		});
 
 		if (!(await schema.isValid(request.body))) {
-			return response.status(400).json({ error: "Validations fails" });
+			return response
+				.status(400)
+				.json({ error: "Preencha os campos corretamente" });
 		}
 
 		const profile = await Profile.findOne({
@@ -29,7 +31,7 @@ module.exports = {
 		});
 
 		if (profile) {
-			return response.status(400).json({ error: "Profile already exists." });
+			return response.status(400).json({ error: "Este usuário já existe" });
 		}
 
 		const { id, name, username } = await Profile.create(request.body);
@@ -56,7 +58,7 @@ module.exports = {
 		});
 
 		if (!profile) {
-			return response.status(400).json({ error: "Profile not found." });
+			return response.status(400).json({ error: "Usuário não encontrado" });
 		}
 
 		await profile.destroy();
@@ -73,7 +75,9 @@ module.exports = {
 		});
 
 		if (!(await schema.isValid(request.body))) {
-			return response.status(400).json({ error: "Validations fails" });
+			return response
+				.status(400)
+				.json({ error: "Preencha os campos corretamente" });
 		}
 
 		const profile = await Profile.findOne({
@@ -83,7 +87,7 @@ module.exports = {
 		});
 
 		if (!profile) {
-			return response.status(400).json({ error: "Username not found" });
+			return response.status(400).json({ error: "Usuário não encontrado" });
 		}
 
 		await profile.update(request.body);

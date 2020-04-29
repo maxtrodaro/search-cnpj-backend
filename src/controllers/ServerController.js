@@ -6,7 +6,7 @@ module.exports = {
 		const server = await ServerStore.findAll();
 
 		if (server.length < 1) {
-			return response.json({ error: `Don't have servers yet.` });
+			return response.json({ error: "Não existem servidores ainda" });
 		}
 
 		return response.json(server);
@@ -19,7 +19,9 @@ module.exports = {
 		});
 
 		if (!(await schema.isValid(request.body))) {
-			return response.status(400).json({ error: "Validation fails." });
+			return response
+				.status(400)
+				.json({ error: "Preencha os campos corretamente" });
 		}
 
 		const server = await ServerStore.findOne({
@@ -29,7 +31,7 @@ module.exports = {
 		});
 
 		if (server) {
-			return response.status(400).json({ error: "Server already exists." });
+			return response.status(400).json({ error: "Servidor já existente" });
 		}
 
 		const { name, ip } = await ServerStore.create(request.body);
@@ -50,7 +52,7 @@ module.exports = {
 		});
 
 		if (!server) {
-			return response.status(400).json({ error: "Server don't find" });
+			return response.status(400).json({ error: "Servidor não encontrado" });
 		}
 
 		await server.destroy();

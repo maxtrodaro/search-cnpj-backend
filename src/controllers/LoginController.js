@@ -10,7 +10,9 @@ module.exports = {
 		});
 
 		if (!(await schema.isValid(request.body))) {
-			return response.status(400).json({ error: "Validations fails" });
+			return response
+				.status(400)
+				.json({ error: "Preencha os campos corretamente" });
 		}
 
 		const { username } = request.body;
@@ -20,11 +22,11 @@ module.exports = {
 		});
 
 		if (!profile) {
-			return response.status(400).json({ error: "User not found" });
+			return response.status(400).json({ error: "Usuário não encontrado" });
 		}
 
 		if (!(await profile.checkPassword(request.body.password))) {
-			return response.status(400).json({ error: "Password does not match" });
+			return response.status(400).json({ error: "Senha inválida" });
 		}
 
 		const { id, name } = profile;

@@ -6,7 +6,7 @@ module.exports = {
 		const store = await Store.findAll();
 
 		if (store.length < 1) {
-			return response.json({ error: `Don't have stores yet.` });
+			return response.json({ error: "Ainda não existem lojas" });
 		}
 
 		return response.json(store);
@@ -21,7 +21,9 @@ module.exports = {
 		});
 
 		if (!(await schema.isValid(request.body))) {
-			return response.status(400).json({ error: "Validations fails" });
+			return response
+				.status(400)
+				.json({ error: "Preencha os campos corretamente" });
 		}
 
 		const storeCnpj = await Store.findOne({
@@ -37,7 +39,7 @@ module.exports = {
 		});
 
 		if (storeCnpj || storeCodemp) {
-			return response.status(400).json({ error: "Store already exists." });
+			return response.status(400).json({ error: "Loja já existente" });
 		}
 
 		const { name, cnpj, cod_emp, serv_ip } = await Store.create(request.body);
@@ -79,7 +81,9 @@ module.exports = {
 		});
 
 		if (!(await schema.isValid(request.body))) {
-			return response.status(400).json({ error: "Validations fails" });
+			return response
+				.status(400)
+				.json({ error: "Preencha os campos corretamente" });
 		}
 
 		const store = await Store.findOne({
@@ -89,7 +93,7 @@ module.exports = {
 		});
 
 		if (!store) {
-			return response.status(400).json({ error: "Store not found." });
+			return response.status(400).json({ error: "Loja não encontrada" });
 		}
 
 		await store.update(request.body);
