@@ -3,7 +3,7 @@ const yup = require("yup");
 
 module.exports = {
 	async getServer(request, response) {
-		const server = await ServerStore.findAll();
+		const server = await ServerStore.findAndCountAll();
 
 		if (server.length < 1) {
 			return response.json({ error: "Não existem servidores ainda" });

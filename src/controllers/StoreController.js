@@ -3,7 +3,7 @@ const yup = require("yup");
 
 module.exports = {
 	async getStore(request, response) {
-		const store = await Store.findAll();
+		const store = await Store.findAndCountAll();
 
 		if (store.length < 1) {
 			return response.json({ error: "Ainda não existem lojas" });
