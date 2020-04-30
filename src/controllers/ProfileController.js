@@ -36,11 +36,10 @@ module.exports = {
 
 		await Profile.create(request.body);
 
-		const token = generateToken({ id: id });
+		//const token = generateToken({ id: id });
 
 		return response.status(200).json({
 			user: "Usuário cadastrado com sucesso",
-			token,
 		});
 	},
 
