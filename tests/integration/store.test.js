@@ -4,7 +4,7 @@ const app = require("../../src/app");
 const factory = require("../factories");
 
 describe("Store", () => {
-	it("should be able to register", async () => {
+	test("should be able to register", async () => {
 		const store = await factory.attrs("Store");
 
 		const response = await request(app).post("/store").send(store);

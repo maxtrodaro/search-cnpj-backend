@@ -3,16 +3,12 @@ const request = require("supertest");
 const app = require("../../src/app");
 const factory = require("../factories");
 
-describe("Profile", () => {
+describe("Server", () => {
 	test("should be able to register", async () => {
-		const profile = await factory.attrs("Profile");
+		const server = await factory.attrs("Server");
 
-		const response = await request(app).post("/profile").send(profile);
+		const response = await request(app).post("/server").send(server);
 
 		expect(response.status).toBe(200);
-	});
-
-	afterAll(async (done) => {
-		done();
 	});
 });
