@@ -47,7 +47,7 @@ describe("Store", () => {
 
 	test("should be able to delete a store", async () => {
 		const store = await factory.attrs("Store");
-		const response = await request(app).post("/store").send(store);
+		await request(app).post("/store").send(store);
 
 		const deleteStore = await request(app).delete(`/store/${store.cnpj}`);
 
