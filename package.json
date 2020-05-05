@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "cross-env NODE_ENV=development nodemon src/server.js",
 		"pretest": "cross-env NODE_ENV=test sequelize db:migrate",
-		"test": "cross-env NODE_ENV=test jest",
+		"test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
 		"postest": "cross-env NODE_ENV=test sequelize db:migrate:undo:all",
 		"production": "cross-env NODE_ENV=production node src/server.js"
 	},

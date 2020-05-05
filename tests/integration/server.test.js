@@ -23,9 +23,29 @@ describe("Server", () => {
 		expect(response.status).toBe(200);
 	});
 
-	test("should be able delete a server", async () => {
+	test("validation of fields in the response in the servers", async () => {
 		const server = await factory.attrs("Server");
 		await request(app).post("/server").send(server);
+
+		const listServers = await request(app).get("/server");
+
+		expect(listServers.body).toEqual({
+			count: expect.any(Number),
+			rows: [
+				{
+					createdAt: expect.any(String),
+					id: expect.any(Number),
+					ip: expect.any(String),
+					name: expect.any(String),
+					updatedAt: expect.any(String),
+				},
+			],
+		});
+	});
+
+	test("should be able delete a server", async () => {
+		const server = await factory.attrs("Server");
+		const response = await request(app).post("/server").send(server);
 
 		const deleteServer = await request(app).delete(`/server/${server.ip}`);
 

@@ -23,7 +23,7 @@ describe("Profile", () => {
 		expect(profile.status).toBe(200);
 	});
 
-	test("validate response when I list profiles", async () => {
+	test("validation of fields in the response in the profiles", async () => {
 		const profile = await factory.attrs("Profile");
 		await request(app).post("/profile").send(profile);
 
