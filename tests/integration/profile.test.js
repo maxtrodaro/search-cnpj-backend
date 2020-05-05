@@ -1,8 +1,8 @@
 const request = require("supertest");
 
 const app = require("../../src/app");
-const factory = require("../factories");
 const truncate = require("../util/truncate");
+const factory = require("../factories");
 
 describe("Profile", () => {
 	beforeEach(async () => {
@@ -23,7 +23,7 @@ describe("Profile", () => {
 		expect(profile.status).toBe(200);
 	});
 
-	test("should be able to list a profiles", async () => {
+	test("validate response when I list profiles", async () => {
 		const profile = await factory.attrs("Profile");
 		await request(app).post("/profile").send(profile);
 
