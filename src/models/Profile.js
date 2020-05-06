@@ -7,6 +7,7 @@ class Profile extends Model {
 			{
 				name: DataTypes.STRING,
 				username: DataTypes.STRING,
+				permission: DataTypes.STRING,
 				password: DataTypes.VIRTUAL,
 				password_hash: DataTypes.STRING,
 			},

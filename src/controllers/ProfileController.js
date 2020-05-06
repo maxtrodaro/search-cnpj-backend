@@ -18,6 +18,7 @@ module.exports = {
 			name: yup.string().required(),
 			username: yup.string().required(),
 			password: yup.string().required().min(8),
+			permission: yup.string().required(),
 		});
 
 		if (!(await schema.isValid(request.body))) {
@@ -35,8 +36,6 @@ module.exports = {
 		}
 
 		await Profile.create(request.body);
-
-		//const token = generateToken({ id: id });
 
 		return response.status(200).json({
 			user: "Usuário cadastrado com sucesso",
