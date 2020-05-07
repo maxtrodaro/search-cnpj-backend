@@ -29,7 +29,7 @@ module.exports = {
 			return response.status(400).json({ error: "Senha inválida" });
 		}
 
-		const { id, name } = profile;
+		const { id, name, permission } = profile;
 
 		const token = generateToken({ id: profile.id });
 
@@ -38,6 +38,7 @@ module.exports = {
 				id,
 				name,
 				username,
+				permission,
 			},
 			token,
 		});
