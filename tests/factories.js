@@ -11,6 +11,7 @@ factory.define("Profile", Profile, () => ({
 	name: faker.name.findName(),
 	username: faker.internet.userName(),
 	password: faker.internet.password(),
+	permission: faker.lorem.word,
 }));
 
 factory.define("Store", Store, () => ({

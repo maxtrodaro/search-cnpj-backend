@@ -34,6 +34,7 @@ describe("Profile", () => {
 				createdAt: expect.any(String),
 				id: expect.any(Number),
 				name: expect.any(String),
+				permission: expect.any(String),
 				password_hash: expect.any(String),
 				updatedAt: expect.any(String),
 				username: expect.any(String),
