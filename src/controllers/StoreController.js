@@ -46,6 +46,16 @@ module.exports = {
 			return response.status(400).json({ error: "Servidor não encontrado" });
 		}
 
+		const storeCnpj = await Store.findOne({
+			where: {
+				cnpj: cnpj,
+			},
+		});
+
+		if (storeCnpj) {
+			return response.status(400).json({ error: "CNPJ já cadastrado!" });
+		}
+
 		const validStore = await Store.findOne({
 			where: {
 				cod_emp: cod_emp,
