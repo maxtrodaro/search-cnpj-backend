@@ -7,10 +7,10 @@ const Store = require("../models/Store");
 
 const connection = new Sequelize(dbConfig);
 
-const models = [Profile, ServerStore, Store];
+Profile.init(connection);
+ServerStore.init(connection);
+Store.init(connection);
 
-models.map((model) => {
-	model.init(connection);
-});
+Store.associate(connection.models);
 
 module.exports = connection;

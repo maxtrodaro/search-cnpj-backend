@@ -7,12 +7,15 @@ class Store extends Model {
 				name: DataTypes.STRING,
 				cnpj: DataTypes.STRING,
 				cod_emp: DataTypes.STRING,
-				serv_ip: DataTypes.STRING,
 			},
 			{
 				sequelize: connection,
 			}
 		);
+	}
+
+	static associate(models) {
+		this.belongsTo(models.Server, { foreignKey: "serv_ip", as: "server" });
 	}
 }
 

@@ -9,6 +9,13 @@ module.exports = {
 				autoIncrement: true,
 				allowNull: false,
 			},
+			serv_ip: {
+				type: Sequelize.STRING,
+				allowNull: false,
+				references: { model: "servers", key: "ip" },
+				onUpdate: "CASCADE",
+				onDelete: "CASCADE",
+			},
 			name: {
 				type: Sequelize.STRING,
 				allowNull: false,
