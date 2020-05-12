@@ -11,8 +11,13 @@ describe("Store", () => {
 
 	test("should be able to register a new store", async () => {
 		const store = await factory.attrs("Store");
+		const server = await factory.attrs("Server");
 
-		const response = await request(app).post("/store").send(store);
+		await request(app).post("/server").send(server);
+
+		const response = await request(app)
+			.post(`/server/${server.ip}/store`)
+			.send(store);
 
 		expect(response.status).toBe(200);
 	});
@@ -25,7 +30,11 @@ describe("Store", () => {
 
 	test("validation of fields in the response in the stores", async () => {
 		const store = await factory.attrs("Store");
-		await request(app).post("/store").send(store);
+		const server = await factory.attrs("Server");
+
+		await request(app).post("/server").send(server);
+
+		await request(app).post(`/server/${server.ip}/store`).send(store);
 
 		const listStore = await request(app).get("/store");
 
@@ -47,7 +56,11 @@ describe("Store", () => {
 
 	test("should be able to delete a store", async () => {
 		const store = await factory.attrs("Store");
-		await request(app).post("/store").send(store);
+		const server = await factory.attrs("Server");
+
+		await request(app).post("/server").send(server);
+
+		await request(app).post(`/server/${server.ip}/store`).send(store);
 
 		const deleteStore = await request(app).delete(`/store/${store.cnpj}`);
 
@@ -56,7 +69,11 @@ describe("Store", () => {
 
 	test("should be able to edit a store", async () => {
 		const store = await factory.attrs("Store");
-		await request(app).post("/store").send(store);
+		const server = await factory.attrs("Server");
+
+		await request(app).post("/server").send(server);
+
+		await request(app).post(`/server/${server.ip}/store`).send(store);
 
 		const editStore = await request(app).put(`/store/${store.cnpj}`).send({
 			name: "Updated Store",

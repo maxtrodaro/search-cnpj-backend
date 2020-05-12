@@ -53,7 +53,7 @@ module.exports = {
 		});
 
 		if (storeCnpj) {
-			return response.status(400).json({ error: "CNPJ já cadastrado!" });
+			return response.status(400).json({ error: "CNPJ já cadastrado" });
 		}
 
 		const validStore = await Store.findOne({
@@ -74,7 +74,7 @@ module.exports = {
 			serv_ip,
 		});
 
-		return response.json("Loja Cadastrada!");
+		return response.status(200).json("Loja Cadastrada!");
 	},
 
 	async deleteStore(request, response) {
