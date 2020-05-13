@@ -12,6 +12,7 @@ const authMiddleware = require("./middlewares/authorization");
 const routes = express.Router();
 
 routes.get("/store", storeController.getStore);
+routes.get("/store/:ip", storeController.getStoresWithServer);
 routes.post("/server/:serv_ip/store", storeController.postStore);
 routes.delete("/store/:cnpj", storeController.deleteStore);
 routes.put("/store/:cnpj", storeController.editStore);

@@ -13,6 +13,22 @@ module.exports = {
 		return response.json(store);
 	},
 
+	async getStoresWithServer(request, response) {
+		const { ip } = request.params;
+
+		const store = await Store.findAndCountAll({
+			where: {
+				serv_ip: ip,
+			},
+		});
+
+		if (store.length < 1) {
+			return response.json({ error: "Ainda não existem lojas nesse servidor" });
+		}
+
+		return response.json(store);
+	},
+
 	async postStore(request, response) {
 		const schemaBody = yup.object().shape({
 			name: yup.string().required(),
