@@ -97,6 +97,7 @@ module.exports = {
 
 	async editStore(request, response) {
 		const { cnpj } = request.params;
+		const { cod_emp, serv_ip } = request.body;
 
 		const schema = yup.object().shape({
 			name: yup.string().required(),
@@ -119,6 +120,17 @@ module.exports = {
 
 		if (!store) {
 			return response.status(400).json({ error: "Loja não encontrada" });
+		}
+
+		const validStore = await Store.findOne({
+			where: {
+				cod_emp: cod_emp,
+				serv_ip: serv_ip,
+			},
+		});
+
+		if (validStore) {
+			return response.status(400).json({ error: "Loja já existente" });
 		}
 
 		await store.update(request.body);
