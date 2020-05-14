@@ -85,6 +85,14 @@ describe("Store", () => {
 		expect(editStore.status).toBe(204);
 	});
 
+	test("should be able to list a store in servers", async () => {
+		const server = await factory.attrs("Server");
+
+		const response = await request(app).get(`/store/${server.ip}`);
+
+		expect(response.status).toBe(200);
+	});
+
 	afterAll(async (done) => {
 		done();
 	});
