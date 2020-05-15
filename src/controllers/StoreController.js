@@ -138,6 +138,16 @@ module.exports = {
 			return response.status(400).json({ error: "Loja não encontrada" });
 		}
 
+		const validServer = await ServerStore.findOne({
+			where: {
+				ip: serv_ip,
+			},
+		});
+
+		if (!validServer) {
+			return response.status(400).json({ error: "Servidor não encontrado!" });
+		}
+
 		const validStore = await Store.findOne({
 			where: {
 				cod_emp: cod_emp,
