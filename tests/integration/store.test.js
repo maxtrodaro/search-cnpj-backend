@@ -79,7 +79,7 @@ describe("Store", () => {
 			name: "Updated Store",
 			cnpj: "64448500000173",
 			cod_emp: "TEST0001",
-			serv_ip: "10.1.1.1",
+			serv_ip: server.ip,
 		});
 
 		expect(editStore.status).toBe(204);
