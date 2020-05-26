@@ -61,7 +61,8 @@ describe("Profile", () => {
 			.put(`/profile/${profile.username}`)
 			.send({
 				name: "Updated Name",
-				username: "teste",
+				username: "testando123",
+				permission: "master",
 			});
 
 		expect(editProfile.status).toBe(204);
