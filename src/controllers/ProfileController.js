@@ -65,7 +65,7 @@ module.exports = {
 
 		const schema = yup.object().shape({
 			name: yup.string().required(),
-			username: yup.string().required().min(8),
+			username: yup.string().required(),
 			permission: yup.string().required(),
 		});
 
