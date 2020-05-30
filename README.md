@@ -27,6 +27,10 @@ Ter Docker rodando um container PostgreSQL.
 
 \$ npm install
 
+# Criar o banco de dados:
+
+\$ npm run createdb
+
 # Rodar as migrations:
 
 \$ npm run database
